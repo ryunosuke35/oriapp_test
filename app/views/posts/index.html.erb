@@ -1,55 +1,33 @@
-        <% @posts.each_with_index do |post, id| %>
 
-          <div class="box_style">
-
-            <%= content_tag :div, id: "box_#{id}" do %>
-              <%= content_tag :div, post.title %>
-              <%= content_tag :div, post.content %>
-            <% end %>
-
-<% if false %>
-            <% @start = id %>
-            <% @end = id + 1%>
+<% array = [] %>
 
 
-            <%= javascript_tag do %>
-              start = <%= raw @start.to_json %>;
-              end = <%= raw @end.to_json %>;
-            <% end %>
+<% @posts.each_with_index do |post, id| %>
+
+  <div class="box_style">
+    <%= content_tag :div, id: "box_#{id}" do %>
+      <%= content_tag :div, post.title %>
+      <%= content_tag :div, post.content %>
+    <% end %>
+
+
+    <%= javascript_tag do %>
+      <% array << id %>
+      count = <%= array %>
+    <% end %>
+
+
+    <% if [1, 2, 3].include?(3) %>
+      <% @answer = true %>
+    <% else %>
+      <% @answer = false %>
+    <% end %>
+
+    <%= javascript_tag do %>
+      answer = <%= @answer %>
+    <% end %>
+
+  </div>
 <% end %>
 
-
-<% if [1, 2, 3].include?(2) %>
-  <% @answer = true %>
-<% else %>
-  <% @answer = false %>
-<% end %>
-
-<% a = [] %>
-<% a << @answer %>
-
-
-<%= javascript_tag do %>
-  answer = <%= @answer %>
-<% end %>
-
-
-          </div>
-
-
-
-        <% end %>
-
-
-
-
-
-
-
-<% if false %>
-        <div class="box_frame">
-          <%= content_tag(:div, post.title, id: "box_#{id}") %>
-          <span><%= post.title %></span>
-          <span><%= post.content %></span>
-        </div>
-<% end %>
+<%= link_to '新規投稿', new_post_path %>
