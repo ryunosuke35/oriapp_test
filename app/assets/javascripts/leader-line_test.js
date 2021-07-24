@@ -1,31 +1,28 @@
+var datas = {0: false, 1: true, 2: false, 3: true, 4: true, 5: false, 6: true, 7:false};
+
 $(document).ready(function () {
 
-  let max = count.reduce(function(a, b){
-    return Math.max(a, b);
-  });
+  Object.keys(datas).forEach(function(key) {
 
+    num = parseInt(key) + 1;
 
-  for (let i = 0; i < max; i++) {
-    start = i;
-    end = i + 1;
-
-    if (answer){
+    if (datas[key]){
       new LeaderLine(
-        document.getElementById("box_" + start),
-        document.getElementById("box_" + end), {
+        document.getElementById("box_" + key),
+        document.getElementById("box_" + num), {
           color: '#696969',
           endPlugSize: 0.1
         }
       );
     }else {
       new LeaderLine(
-      document.getElementById("box_" + start),
-        document.getElementById("box_" + end),{
+      document.getElementById("box_" + key),
+        document.getElementById("box_" + num),{
           dash: {animation: true, len: 6, gap: 9},
           color: '#696969',
           endPlugSize: 0.1
         }
       );
     }
-  };
+  });
 });

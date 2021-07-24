@@ -1,6 +1,5 @@
 
-<% array = [] %>
-
+<% @array = {} %>
 
 <% @posts.each_with_index do |post, id| %>
 
@@ -10,24 +9,36 @@
       <%= content_tag :div, post.content %>
     <% end %>
 
+    <% array1 = [1, 3, 6] %>
+    <% array2 = [5, 2, 6] %>
 
-    <%= javascript_tag do %>
-      <% array << id %>
-      count = <%= array %>
-    <% end %>
-
-
-    <% if [1, 2, 3].include?(3) %>
-      <% @answer = true %>
+    <% a = array1.concat(array2) %>
+    <% b = a.uniq %>
+    <% if a.length != b.length %>
+      <% match = true %>
     <% else %>
-      <% @answer = false %>
+      <% match = false %>
     <% end %>
 
     <%= javascript_tag do %>
-      answer = <%= @answer %>
+      <% @array[id] = match %>
+      var data = <%= @array.to_json.html_safe %>
     <% end %>
 
   </div>
+
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <%= link_to '新規投稿', new_post_path %>
