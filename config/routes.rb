@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  resources :users do
+    collection do
+      get 'level_up'
+    end
+  end
+
   resources :posts
 
   root 'posts#index'
