@@ -26,9 +26,6 @@ class PostsController < ApplicationController
 
     if @post.save
 
-
-
-
       user = current_user
       totalExp = user.experience_point
       user.update(experience_point: totalExp + 5)
@@ -37,9 +34,6 @@ class PostsController < ApplicationController
       if levelSetting.thresold <= user.experience_point
         user.update(level: user.level + 1)
       end
-
-
-
 
       redirect_to action: :index
       # redirect_to @post, notice: "Post was successfully created."
