@@ -1,8 +1,10 @@
 
 
 <h3>レベル:<%= current_user.level %></h3>
-<h3>経験値:<%= current_user.experience_point %></h3>
-<% @levelSetting.thresold %>
+<h3>経験値:<%= current_user.experience_point %></h3><br>
+<h3>次のレベル:<%= current_user.level + 1 %></h3>
+<h3>必要経験値:<%= @levelSetting.thresold %></h3><br>
+
 
 
 <% exp_ratio = (current_user.experience_point / @levelSetting.thresold.to_f * 100).to_i %>

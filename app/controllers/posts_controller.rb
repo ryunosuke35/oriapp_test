@@ -25,7 +25,23 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to controller: :users, action: :level_up
+
+
+
+
+      user = current_user
+      totalExp = user.experience_point
+      user.update(experience_point: totalExp + 5)
+
+      levelSetting = LevelSetting.find_by(level: user.level + 1);
+      if levelSetting.thresold <= user.experience_point
+        user.update(level: user.level + 1)
+      end
+
+
+
+
+      redirect_to action: :index
       # redirect_to @post, notice: "Post was successfully created."
     else
       render :new, status: :unprocessable_entity
