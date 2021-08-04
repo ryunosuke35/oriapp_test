@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+LevelSetting.create(:level => 1, :thresold => 5)
 LevelSetting.create(:level => 2, :thresold => 10)
 LevelSetting.create(:level => 3, :thresold => 30)
 LevelSetting.create(:level => 4, :thresold => 60)
